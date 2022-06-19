@@ -1,5 +1,5 @@
-Config.Release.board.BOARD.ID=uno
-Config.Release.board.BOARD.MENU.cpu=getMenuItemIDFromMenuItemName did not find menu item with name "ATmega2560 (Mega 2560)" for menu ID "cpu" and for boardID "gemma"!
+Config.Release.board.BOARD.ID=mega
+Config.Release.board.BOARD.MENU.cpu=atmega2560
 Config.Release.board.BOARD.TXT=${SLOEBER_HOME}/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/boards.txt
 Config.Release.board.PROGRAMMER.NAME=Default
 Config.Release.board.UPLOAD.PORT=/dev/ttyACM0

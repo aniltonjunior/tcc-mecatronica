@@ -39,7 +39,7 @@
 		<link>
 			<name>core/variant</name>
 			<type>2</type>
-			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/variants/standard</locationURI>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/variants/mega</locationURI>
 		</link>
 		<link>
 			<name>libraries/Adafruit_BusIO</name>
@@ -47,14 +47,29 @@
 			<location>/home/anilton/Arduino/libraries/Adafruit_BusIO</location>
 		</link>
 		<link>
+			<name>libraries/Adafruit_CC3000_Library</name>
+			<type>2</type>
+			<location>/home/anilton/Arduino/libraries/Adafruit_CC3000_Library</location>
+		</link>
+		<link>
 			<name>libraries/Adafruit_Unified_Sensor</name>
 			<type>2</type>
 			<location>/home/anilton/Arduino/libraries/Adafruit_Unified_Sensor</location>
 		</link>
 		<link>
+			<name>libraries/ArduinoJson</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/ArduinoJson/6.19.4</locationURI>
+		</link>
+		<link>
 			<name>libraries/DHT_sensor_library</name>
 			<type>2</type>
 			<location>/home/anilton/Arduino/libraries/DHT_sensor_library</location>
+		</link>
+		<link>
+			<name>libraries/Firmata</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/Firmata/2.5.8</locationURI>
 		</link>
 		<link>
 			<name>libraries/RTClib</name>
@@ -67,9 +82,19 @@
 			<location>/home/anilton/Arduino/libraries/Rtc_Pcf8563</location>
 		</link>
 		<link>
+			<name>libraries/SD</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/SD/1.2.4</locationURI>
+		</link>
+		<link>
 			<name>libraries/SPI</name>
 			<type>2</type>
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/libraries/SPI</locationURI>
+		</link>
+		<link>
+			<name>libraries/SdFat</name>
+			<type>2</type>
+			<location>/home/anilton/Arduino/libraries/SdFat</location>
 		</link>
 		<link>
 			<name>libraries/SoftwareSerial</name>

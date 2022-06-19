@@ -9,7 +9,7 @@ core/core/Print.cpp.o: \
  /opt/Sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/cores/arduino/Print.h \
  /opt/Sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/cores/arduino/Printable.h \
  /opt/Sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/cores/arduino/USBAPI.h \
- /opt/Sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/variants/standard/pins_arduino.h
+ /opt/Sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/variants/mega/pins_arduino.h
 
 /opt/Sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/cores/arduino/Arduino.h:
 
@@ -29,4 +29,4 @@ core/core/Print.cpp.o: \
 
 /opt/Sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/cores/arduino/USBAPI.h:
 
-/opt/Sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/variants/standard/pins_arduino.h:
+/opt/Sloeber/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/variants/mega/pins_arduino.h:

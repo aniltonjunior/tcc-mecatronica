@@ -29,6 +29,13 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/RTClib/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Adafruit_BusIO}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/SdFat/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Adafruit_CC3000_Library/utility}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/SD/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Adafruit_CC3000_Library}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Firmata/utility}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Firmata}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/ArduinoJson/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.1843586325" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -44,6 +51,13 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/RTClib/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Adafruit_BusIO}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/SdFat/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Adafruit_CC3000_Library/utility}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/SD/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Adafruit_CC3000_Library}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Firmata/utility}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Firmata}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/ArduinoJson/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.1087231803" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -59,6 +73,13 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/RTClib/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Adafruit_BusIO}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/SdFat/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Adafruit_CC3000_Library/utility}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/SD/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Adafruit_CC3000_Library}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Firmata/utility}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/Firmata}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/EstufaSENAI/libraries/ArduinoJson/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.2002646042" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>
@@ -99,7 +120,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="libraries/?*/**/?xamples/**|libraries/?*/**/?xtras/**|libraries/?*/**/test*/**|libraries/?*/**/third-party/**|libraries/**/._*|libraries/?*/utility/*/*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="libraries/SdFat/doc|libraries/?*/**/?xamples/**|libraries/?*/**/?xtras/**|libraries/?*/**/test*/**|libraries/?*/**/third-party/**|libraries/**/._*|libraries/?*/utility/*/*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

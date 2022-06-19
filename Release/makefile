@@ -12,11 +12,25 @@ RM := rm -f
 -include libraries/Wire/src/utility/subdir.mk
 -include libraries/Wire/src/subdir.mk
 -include libraries/SoftwareSerial/src/subdir.mk
+-include libraries/SdFat/src/iostream/subdir.mk
+-include libraries/SdFat/src/common/subdir.mk
+-include libraries/SdFat/src/SpiDriver/subdir.mk
+-include libraries/SdFat/src/SdCard/subdir.mk
+-include libraries/SdFat/src/FsLib/subdir.mk
+-include libraries/SdFat/src/FatLib/subdir.mk
+-include libraries/SdFat/src/ExFatLib/subdir.mk
+-include libraries/SdFat/src/subdir.mk
 -include libraries/SPI/src/subdir.mk
+-include libraries/SD/src/utility/subdir.mk
+-include libraries/SD/src/subdir.mk
 -include libraries/Rtc_Pcf8563/src/subdir.mk
 -include libraries/RTClib/src/subdir.mk
+-include libraries/Firmata/utility/subdir.mk
+-include libraries/Firmata/subdir.mk
 -include libraries/DHT_sensor_library/subdir.mk
 -include libraries/Adafruit_Unified_Sensor/subdir.mk
+-include libraries/Adafruit_CC3000_Library/utility/subdir.mk
+-include libraries/Adafruit_CC3000_Library/subdir.mk
 -include libraries/Adafruit_BusIO/subdir.mk
 -include core/core/subdir.mk
 -include objects.mk
@@ -86,7 +100,7 @@ EstufaSENAI: $(HEX)
 
 EstufaSENAI.elf: $(LINK_OBJ) $(AR)
 	@echo 'Starting combiner'
-	"/opt/Sloeber/arduinoPlugin/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-gcc" -w -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p   -o "/home/anilton/Documents/sloeber-workspace/EstufaSENAI/Release/EstufaSENAI.elf"   $(LINK_OBJ)    /home/anilton/Documents/sloeber-workspace/EstufaSENAI/Release/arduino.ar  "-L/home/anilton/Documents/sloeber-workspace/EstufaSENAI/Release" -lm
+	"/opt/Sloeber/arduinoPlugin/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-gcc" -w -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections,--relax -mmcu=atmega2560   -o "/home/anilton/Documents/sloeber-workspace/EstufaSENAI/Release/EstufaSENAI.elf"   $(LINK_OBJ)    /home/anilton/Documents/sloeber-workspace/EstufaSENAI/Release/arduino.ar  "-L/home/anilton/Documents/sloeber-workspace/EstufaSENAI/Release" -lm
 	@echo 'Finished building: $@'
 	@echo ' '
 

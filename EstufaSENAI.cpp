@@ -7,69 +7,77 @@
 #include <DHT_U.h>
 #include <Rtc_Pcf8563.h>
 #include <SoftwareSerial.h>
+#include <ArduinoJson.h>
 
-#define DHTPIN 7 //PINO DIGITAL UTILIZADO PELO DHT22
+#define DHTPIN 31 //PINO DIGITAL UTILIZADO PELO DHT22
 #define DHTTYPE DHT22 //DEFINE O MODELO DO SENSOR (DHT22 / AM2302)
-
 DHT_Unified dht(DHTPIN, DHTTYPE); //PASSA OS PARÂMETROS PARA A FUNÇÃO
-
-SoftwareSerial BTSerial(2, 3); // SRX | STX
-// Connect the HC-05 TX to Arduino pin 2(as SRX).
-// Connect the HC-05 RX to Arduino pin 3 (as STX) through a voltage divider.
-
-//init the real-time clock
-Rtc_Pcf8563 rtc;
-
-int ldr = A0; //Atribui A0 a variável ldr
-int valorldr = 0; //Declara a variável valorldr como inteiro
-
-int state;
-int delayLeitura = 3;
-
-int pino_rele1 = 3;
-bool rele1_ligado = false;
-int pino_rele2 = 4;
-bool rele2_ligado = false;
-int pino_rele3 = 5;
-bool rele3_ligado = false;
-int pino_rele4 = 6;
-bool rele4_ligado = false;
-
-float umidade = 0.0;
-float temperatura = 0.0;
 
 int delaySensor;
 sensors_event_t eventoLeitura;
+
+StaticJsonDocument<200> dadosEstufa;
+
+float umidade = 0.0;
+float temperatura = 0.0;
 
 float temperatura_minima = 8.0;
 float temperatura_maxima = 20.0;
 float umidade_minima = 80.0;
 float umidade_maxima = 90.0;
 
-void getDateTime() {
-	char buffer[50];
-	char DOW[7][4]={"DOM","SEG","TER","QUA","QUI","SEX","SAB"};
-	sprintf(buffer, "DataHora: %s %02d/%02d/%02d %02d:%02d",
-			DOW[rtc.getWeekday()], rtc.getDay(),
-			rtc.getMonth(), rtc.getYear(), rtc.getHour(), rtc.getMinute());
+SoftwareSerial BTSerial(19, 18);
 
+int state;
+int delayLeitura = 3;
+
+//init the real-time clock
+Rtc_Pcf8563 rtc;
+
+int pino_rele1 = 22;
+bool rele1_ligado = false;
+int pino_rele2 = 23;
+bool rele2_ligado = false;
+int pino_rele3 = 24;
+bool rele3_ligado = false;
+int pino_rele4 = 25;
+bool rele4_ligado = false;
+int pino_rele5 = 26;
+bool rele5_ligado = false;
+
+void writeToSerial(const char* buffer) {
 	Serial.println(buffer);
 	BTSerial.println(buffer);
 }
 
+void writeJsonToSerial() {
+	char buffer[200];
+	serializeJson(dadosEstufa, buffer);
+	writeToSerial(buffer);
+}
+
+void getDateTime() {
+	char buffer[50];
+	char DOW[7][4]={"DOM","SEG","TER","QUA","QUI","SEX","SAB"};
+
+	sprintf(buffer, "%s %02d/%02d/%02d %02d:%02d",
+			DOW[rtc.getWeekday()], rtc.getDay(),
+			rtc.getMonth(), rtc.getYear(), rtc.getHour(), rtc.getMinute());
+
+	dadosEstufa["data"]["diaHora"] = buffer;
+}
+
 void getHumidity() {
+	char buffer[80];
 	dht.humidity().getEvent(&eventoLeitura);
 	umidade = eventoLeitura.relative_humidity;
 	if (isnan(umidade)) {
-		Serial.println("Erro Leitura Umidade!");
+		sprintf(buffer, "NaN");
 	} else {
-		Serial.print("Umidade: ");
-		Serial.println(umidade);
-		BTSerial.print("Umidade: ");
-		BTSerial.println(umidade);
+		sprintf(buffer, "%d.%02u", (int) umidade, (int) fabs(((umidade - (int) umidade)*100)));
 	}
+	dadosEstufa["data"]["umidade"]["valor"] = buffer;
 
-	char buffer[80];
 	// CONTROLE DE UMIDADE ESTUFA
 	if (umidade < umidade_minima) {
 		//Ligamos o ventilador 02 e Exaustor 01
@@ -97,25 +105,25 @@ void getHumidity() {
 		}
 		sprintf(buffer, "Umidade Normal: %d.%02u",
 				(int) umidade, (int) fabs(((umidade - (int) umidade)*100)));
+	} else {
+		sprintf(buffer, "Umidade Alta: %d.%02u",
+							(int) umidade, (int) fabs(((umidade - (int) umidade)*100)));
 	}
-	Serial.println(buffer);
-	BTSerial.println(buffer);
+	dadosEstufa["data"]["umidade"]["mensagem"] = buffer;
 }
 
 void getTemperature() {
+	char buffer[80];
 	dht.temperature().getEvent(&eventoLeitura);
 	temperatura = eventoLeitura.temperature;
 	if (isnan(temperatura)) {
-		Serial.println("Erro Leitura Temperatura!");
+		sprintf(buffer, "NaN");
 	} else {
-		Serial.print("Temperatura: ");
-		Serial.println(temperatura);
-		BTSerial.print("Temperatura: ");
-		BTSerial.println(temperatura);
+		sprintf(buffer, "%d.%02u", (int) temperatura, (int) fabs(((temperatura - (int) temperatura)*100)));
 	}
+	dadosEstufa["data"]["temperatura"]["valor"] = buffer;
 
 	float temperatura_media = ((temperatura_maxima - temperatura_minima)/2+temperatura_minima);
-	char buffer[80];
 	// CONTROLE DE TEMPERATURA ESTUFA
 	if (temperatura < temperatura_minima) {
 		//Ligamos a pastilha Peltier 1 para aquecer
@@ -150,8 +158,7 @@ void getTemperature() {
 		sprintf(buffer, "Temperatura Alta: %d.%02u - Resfriamento iniciado",
 				(int) temperatura, (int) fabs(((temperatura - (int) temperatura)*100)));
 	}
-	Serial.println(buffer);
-	BTSerial.println(buffer);
+	dadosEstufa["data"]["temperatura"]["mensagem"] = buffer;
 }
 
 //The setup function is called once at startup of the sketch
@@ -161,6 +168,16 @@ void setup() {
 
 	dht.begin();
 	Wire.begin();
+
+	dadosEstufa["config"]["rele1"] = rele1_ligado;
+	dadosEstufa["config"]["rele2"] = rele2_ligado;
+	dadosEstufa["config"]["rele3"] = rele3_ligado;
+	dadosEstufa["config"]["rele4"] = rele4_ligado;
+	dadosEstufa["config"]["rele5"] = rele5_ligado;
+	dadosEstufa["config"]["temp_max"] = temperatura_maxima;
+	dadosEstufa["config"]["temp_min"] = temperatura_minima;
+	dadosEstufa["config"]["umid_max"] = umidade_maxima;
+	dadosEstufa["config"]["umid_min"] = umidade_minima;
 
 	//	clear out all the registers
 	//	rtc.initClock();
@@ -199,12 +216,14 @@ void setup() {
 void communication() {
 	if (BTSerial.available()) {
 		byte x = BTSerial.read();
-		Serial.write(x);
+		Serial.print("Recebido Bluetooth: ");
+		Serial.println(x);
 	}
 
 	if (Serial.available()) {
 		byte y = Serial.read();
-		BTSerial.write(y);
+		BTSerial.print("Recebido Arduino: ");
+		BTSerial.println(y);
 	}
 }
 
@@ -218,9 +237,10 @@ void loop() {
 
 	getHumidity();
 
-	communication();
-
+	writeJsonToSerial();
 	Serial.println();
+
+	communication();
 
 	delay(delayLeitura);
 }
